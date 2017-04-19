@@ -1,0 +1,2020 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-module-deps/node_modules/module-deps/index.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-module-deps">npmtest-module-deps (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-module-deps/node_modules/module-deps/index.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">9.63% <small>(42 / 436)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 286)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 57)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">11.38% <small>(42 / 369)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-module-deps/node_modules/module-deps/</a> » index.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var fs = require('fs');
+var path = require('path');
+var relativePath = require('cached-path-relative')
+&nbsp;
+var browserResolve = require('browser-resolve');
+var nodeResolve = require('resolve');
+var detective = require('detective');
+var through = require('through2');
+var concat = require('concat-stream');
+var parents = require('parents');
+var combine = require('stream-combiner2');
+var duplexer = require('duplexer2');
+var xtend = require('xtend');
+var defined = require('defined');
+&nbsp;
+var inherits = require('inherits');
+var Transform = require('readable-stream').Transform;
+&nbsp;
+module.exports = Deps;
+inherits(Deps, Transform);
+&nbsp;
+<span class="fstat-no" title="function not covered">function Deps (opts) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this;</span>
+<span class="cstat-no" title="statement not covered">    if (!(this instanceof Deps)) <span class="cstat-no" title="statement not covered">return new Deps(opts);</span></span>
+<span class="cstat-no" title="statement not covered">    Transform.call(this, { objectMode: true });</span>
+    
+<span class="cstat-no" title="statement not covered">    if (!opts) <span class="cstat-no" title="statement not covered">opts = {};</span></span>
+    
+<span class="cstat-no" title="statement not covered">    this.basedir = opts.basedir || process.cwd();</span>
+<span class="cstat-no" title="statement not covered">    this.persistentCache = opts.persistentCache || <span class="fstat-no" title="function not covered">function (file, id, pkg, fallback, cb) {</span></span>
+<span class="cstat-no" title="statement not covered">        process.nextTick(<span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">            fallback(null, cb);</span>
+        });
+    };
+<span class="cstat-no" title="statement not covered">    this.cache = opts.cache;</span>
+<span class="cstat-no" title="statement not covered">    this.fileCache = opts.fileCache;</span>
+<span class="cstat-no" title="statement not covered">    this.pkgCache = opts.packageCache || {};</span>
+<span class="cstat-no" title="statement not covered">    this.pkgFileCache = {};</span>
+<span class="cstat-no" title="statement not covered">    this.pkgFileCachePending = {};</span>
+<span class="cstat-no" title="statement not covered">    this._emittedPkg = {};</span>
+<span class="cstat-no" title="statement not covered">    this.visited = {};</span>
+<span class="cstat-no" title="statement not covered">    this.walking = {};</span>
+<span class="cstat-no" title="statement not covered">    this.entries = [];</span>
+<span class="cstat-no" title="statement not covered">    this._input = [];</span>
+    
+<span class="cstat-no" title="statement not covered">    this.paths = opts.paths || process.env.NODE_PATH || '';</span>
+<span class="cstat-no" title="statement not covered">    if (typeof this.paths === 'string') {</span>
+<span class="cstat-no" title="statement not covered">        var delimiter = path.delimiter || (process.platform === 'win32' ? ';' : ':');</span>
+<span class="cstat-no" title="statement not covered">        this.paths = this.paths.split(delimiter);</span>
+    }
+<span class="cstat-no" title="statement not covered">    this.paths = this.paths</span>
+        .filter(Boolean)
+        .map(<span class="fstat-no" title="function not covered">function (p) {</span>
+<span class="cstat-no" title="statement not covered">            return path.resolve(self.basedir, p);</span>
+        });
+    
+<span class="cstat-no" title="statement not covered">    this.transforms = [].concat(opts.transform).filter(Boolean);</span>
+<span class="cstat-no" title="statement not covered">    this.globalTransforms = [].concat(opts.globalTransform).filter(Boolean);</span>
+<span class="cstat-no" title="statement not covered">    this.resolver = opts.resolve || browserResolve;</span>
+<span class="cstat-no" title="statement not covered">    this.options = xtend(opts);</span>
+<span class="cstat-no" title="statement not covered">    if (!this.options.modules) <span class="cstat-no" title="statement not covered">this.options.modules = {};</span></span>
+&nbsp;
+    // If the caller passes options.expose, store resolved pathnames for exposed
+    // modules in it. If not, set it anyway so it's defined later.
+<span class="cstat-no" title="statement not covered">    if (!this.options.expose) <span class="cstat-no" title="statement not covered">this.options.expose = {};</span></span>
+<span class="cstat-no" title="statement not covered">    this.pending = 0;</span>
+<span class="cstat-no" title="statement not covered">    this.inputPending = 0;</span>
+    
+<span class="cstat-no" title="statement not covered">    var topfile = path.join(this.basedir, '__fake.js');</span>
+<span class="cstat-no" title="statement not covered">    this.top = {</span>
+        id: topfile,
+        filename: topfile,
+        paths: this.paths,
+        basedir: this.basedir
+    };
+}
+&nbsp;
+Deps.prototype._isTopLevel = <span class="fstat-no" title="function not covered">function (file) {</span>
+<span class="cstat-no" title="statement not covered">    var isTopLevel = this.entries.some(<span class="fstat-no" title="function not covered">function (main) {</span></span>
+<span class="cstat-no" title="statement not covered">        var m = relativePath(path.dirname(main), file);</span>
+<span class="cstat-no" title="statement not covered">        return m.split(/[\\\/]/).indexOf('node_modules') &lt; 0;</span>
+    });
+<span class="cstat-no" title="statement not covered">    if (!isTopLevel) {</span>
+<span class="cstat-no" title="statement not covered">        var m = relativePath(this.basedir, file);</span>
+<span class="cstat-no" title="statement not covered">        isTopLevel = m.split(/[\\\/]/).indexOf('node_modules') &lt; 0;</span>
+    }
+<span class="cstat-no" title="statement not covered">    return isTopLevel;</span>
+};
+&nbsp;
+Deps.prototype._transform = <span class="fstat-no" title="function not covered">function (row, enc, next) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this;</span>
+<span class="cstat-no" title="statement not covered">    if (typeof row === 'string') {</span>
+<span class="cstat-no" title="statement not covered">        row = { file: row };</span>
+    }
+<span class="cstat-no" title="statement not covered">    if (row.transform &amp;&amp; row.global) {</span>
+<span class="cstat-no" title="statement not covered">        this.globalTransforms.push([ row.transform, row.options ]);</span>
+<span class="cstat-no" title="statement not covered">        return next();</span>
+    }
+    else <span class="cstat-no" title="statement not covered">if (row.transform) {</span>
+<span class="cstat-no" title="statement not covered">        this.transforms.push([ row.transform, row.options ]);</span>
+<span class="cstat-no" title="statement not covered">        return next();</span>
+    }
+    
+<span class="cstat-no" title="statement not covered">    self.pending ++;</span>
+<span class="cstat-no" title="statement not covered">    var basedir = defined(row.basedir, self.basedir);</span>
+    
+<span class="cstat-no" title="statement not covered">    if (row.entry !== false) {</span>
+<span class="cstat-no" title="statement not covered">        self.entries.push(path.resolve(basedir, row.file || row.id));</span>
+    }
+    
+<span class="cstat-no" title="statement not covered">    self.lookupPackage(row.file, <span class="fstat-no" title="function not covered">function (err, pkg) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err &amp;&amp; self.options.ignoreMissing) {</span>
+<span class="cstat-no" title="statement not covered">            self.emit('missing', row.file, self.top);</span>
+<span class="cstat-no" title="statement not covered">            self.pending --;</span>
+<span class="cstat-no" title="statement not covered">            return next();</span>
+        }
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return self.emit('error', err)</span></span>
+<span class="cstat-no" title="statement not covered">        self.pending --;</span>
+<span class="cstat-no" title="statement not covered">        self._input.push({ row: row, pkg: pkg });</span>
+<span class="cstat-no" title="statement not covered">        next();</span>
+    });
+};
+&nbsp;
+Deps.prototype._flush = <span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">    var self = this;</span>
+<span class="cstat-no" title="statement not covered">    var files = {};</span>
+<span class="cstat-no" title="statement not covered">    self._input.forEach(<span class="fstat-no" title="function not covered">function (r) {</span></span>
+<span class="cstat-no" title="statement not covered">        var w = r.row, f = files[w.file || w.id];</span>
+<span class="cstat-no" title="statement not covered">        if (f) {</span>
+<span class="cstat-no" title="statement not covered">            f.row.entry = f.row.entry || w.entry;</span>
+<span class="cstat-no" title="statement not covered">            var ex = f.row.expose || w.expose;</span>
+<span class="cstat-no" title="statement not covered">            f.row.expose = ex;</span>
+<span class="cstat-no" title="statement not covered">            if (ex &amp;&amp; f.row.file === f.row.id &amp;&amp; w.file !== w.id) {</span>
+<span class="cstat-no" title="statement not covered">                f.row.id = w.id;</span>
+            }
+        }
+        else <span class="cstat-no" title="statement not covered">files[w.file || w.id] = r;</span>
+    });
+    
+<span class="cstat-no" title="statement not covered">    Object.keys(files).forEach(<span class="fstat-no" title="function not covered">function (key) {</span></span>
+<span class="cstat-no" title="statement not covered">        var r = files[key];</span>
+<span class="cstat-no" title="statement not covered">        var pkg = r.pkg || {};</span>
+<span class="cstat-no" title="statement not covered">        var dir = r.row.file ? path.dirname(r.row.file) : self.basedir;</span>
+<span class="cstat-no" title="statement not covered">        if (!pkg.__dirname) <span class="cstat-no" title="statement not covered">pkg.__dirname = dir;</span></span>
+<span class="cstat-no" title="statement not covered">        self.walk(r.row, xtend(self.top, {</span>
+            filename: path.join(dir, '_fake.js')
+        }));
+    });
+<span class="cstat-no" title="statement not covered">    if (this.pending === 0) <span class="cstat-no" title="statement not covered">this.push(null);</span></span>
+<span class="cstat-no" title="statement not covered">    this._ended = true;</span>
+};
+&nbsp;
+Deps.prototype.resolve = <span class="fstat-no" title="function not covered">function (id, parent, cb) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this;</span>
+<span class="cstat-no" title="statement not covered">    var opts = self.options;</span>
+    
+<span class="cstat-no" title="statement not covered">    if (xhas(self.cache, parent.id, 'deps', id)</span>
+    &amp;&amp; self.cache[parent.id].deps[id]) {
+<span class="cstat-no" title="statement not covered">        var file = self.cache[parent.id].deps[id];</span>
+<span class="cstat-no" title="statement not covered">        var pkg = self.pkgCache[file];</span>
+<span class="cstat-no" title="statement not covered">        if (pkg) <span class="cstat-no" title="statement not covered">return cb(null, file, pkg);</span></span>
+<span class="cstat-no" title="statement not covered">        return self.lookupPackage(file, <span class="fstat-no" title="function not covered">function (err, pkg) {</span></span>
+<span class="cstat-no" title="statement not covered">            cb(null, file, pkg);</span>
+        });
+    }
+    
+<span class="cstat-no" title="statement not covered">    parent.packageFilter = <span class="fstat-no" title="function not covered">function (p, x) {</span></span>
+<span class="cstat-no" title="statement not covered">        var pkgdir = path.dirname(x);</span>
+<span class="cstat-no" title="statement not covered">        if (opts.packageFilter) <span class="cstat-no" title="statement not covered">p = opts.packageFilter(p, x);</span></span>
+<span class="cstat-no" title="statement not covered">        p.__dirname = pkgdir;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        return p;</span>
+    };
+    
+<span class="cstat-no" title="statement not covered">    if (opts.extensions) <span class="cstat-no" title="statement not covered">parent.extensions = opts.extensions;</span></span>
+<span class="cstat-no" title="statement not covered">    if (opts.modules) <span class="cstat-no" title="statement not covered">parent.modules = opts.modules;</span></span>
+    
+<span class="cstat-no" title="statement not covered">    self.resolver(id, parent, <span class="fstat-no" title="function not covered">function onresolve (err, file, pkg, fakePath) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered">        if (!file) <span class="cstat-no" title="statement not covered">return cb(new Error(</span></span>
+            'module not found: "' + id + '" from file '
+            + parent.filename
+        ));
+        
+<span class="cstat-no" title="statement not covered">        if (!pkg || !pkg.__dirname) {</span>
+<span class="cstat-no" title="statement not covered">            self.lookupPackage(file, <span class="fstat-no" title="function not covered">function (err, p) {</span></span>
+<span class="cstat-no" title="statement not covered">                if (err) <span class="cstat-no" title="statement not covered">return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered">                if (!p) <span class="cstat-no" title="statement not covered">p = {};</span></span>
+<span class="cstat-no" title="statement not covered">                if (!p.__dirname) <span class="cstat-no" title="statement not covered">p.__dirname = path.dirname(file);</span></span>
+<span class="cstat-no" title="statement not covered">                self.pkgCache[file] = p;</span>
+<span class="cstat-no" title="statement not covered">                onresolve(err, file, opts.packageFilter</span>
+                    ? opts.packageFilter(p, p.__dirname) : p,
+                    fakePath
+                );
+            });
+        }
+        else <span class="cstat-no" title="statement not covered">cb(err, file, pkg, fakePath);</span>
+    });
+};
+&nbsp;
+Deps.prototype.readFile = <span class="fstat-no" title="function not covered">function (file, id, pkg) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this;</span>
+<span class="cstat-no" title="statement not covered">    if (xhas(this.fileCache, file)) {</span>
+<span class="cstat-no" title="statement not covered">        return toStream(this.fileCache[file]);</span>
+    }
+<span class="cstat-no" title="statement not covered">    var rs = fs.createReadStream(file, {</span>
+        encoding: 'utf8'
+    });
+<span class="cstat-no" title="statement not covered">    rs.on('error', <span class="fstat-no" title="function not covered">function (err) {</span> <span class="cstat-no" title="statement not covered">self.emit('error', err) }</span>);</span>
+<span class="cstat-no" title="statement not covered">    this.emit('file', file, id);</span>
+<span class="cstat-no" title="statement not covered">    return rs;</span>
+};
+&nbsp;
+Deps.prototype.getTransforms = <span class="fstat-no" title="function not covered">function (file, pkg, opts) {</span>
+<span class="cstat-no" title="statement not covered">    if (!opts) <span class="cstat-no" title="statement not covered">opts = {};</span></span>
+<span class="cstat-no" title="statement not covered">    var self = this;</span>
+    
+<span class="cstat-no" title="statement not covered">    var isTopLevel;</span>
+<span class="cstat-no" title="statement not covered">    if (opts.builtin || opts.inNodeModules) <span class="cstat-no" title="statement not covered">isTopLevel = false;</span></span>
+    else <span class="cstat-no" title="statement not covered">isTopLevel = this._isTopLevel(file);</span>
+    
+<span class="cstat-no" title="statement not covered">    var transforms = [].concat(isTopLevel ? this.transforms : [])</span>
+        .concat(getTransforms(pkg, {
+            globalTransform: this.globalTransforms,
+            transformKey: this.options.transformKey
+        }))
+    ;
+<span class="cstat-no" title="statement not covered">    if (transforms.length === 0) <span class="cstat-no" title="statement not covered">return through();</span></span>
+    
+<span class="cstat-no" title="statement not covered">    var pending = transforms.length;</span>
+<span class="cstat-no" title="statement not covered">    var streams = [];</span>
+<span class="cstat-no" title="statement not covered">    var input = through();</span>
+<span class="cstat-no" title="statement not covered">    var output = through();</span>
+<span class="cstat-no" title="statement not covered">    var dup = duplexer(input, output);</span>
+    
+<span class="cstat-no" title="statement not covered">    for (var i = 0; i &lt; transforms.length; i++) <span class="cstat-no" title="statement not covered">(<span class="fstat-no" title="function not covered">function (i) {</span></span></span>
+<span class="cstat-no" title="statement not covered">        makeTransform(transforms[i], <span class="fstat-no" title="function not covered">function (err, trs) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (err) <span class="cstat-no" title="statement not covered">return self.emit('error', err)</span></span>
+<span class="cstat-no" title="statement not covered">            streams[i] = trs;</span>
+<span class="cstat-no" title="statement not covered">            if (-- pending === 0) <span class="cstat-no" title="statement not covered">done();</span></span>
+        });
+    })(i);
+<span class="cstat-no" title="statement not covered">    return dup;</span>
+    
+<span class="fstat-no" title="function not covered">    function done () {</span>
+<span class="cstat-no" title="statement not covered">        var middle = combine.apply(null, streams);</span>
+<span class="cstat-no" title="statement not covered">        middle.on('error', <span class="fstat-no" title="function not covered">function (err) {</span></span>
+<span class="cstat-no" title="statement not covered">            err.message += ' while parsing file: ' + file;</span>
+<span class="cstat-no" title="statement not covered">            if (!err.filename) <span class="cstat-no" title="statement not covered">err.filename = file;</span></span>
+<span class="cstat-no" title="statement not covered">            self.emit('error', err);</span>
+        });
+<span class="cstat-no" title="statement not covered">        input.pipe(middle).pipe(output);</span>
+    }
+    
+<span class="fstat-no" title="function not covered">    function makeTransform (tr, cb) {</span>
+<span class="cstat-no" title="statement not covered">        var trOpts = {};</span>
+<span class="cstat-no" title="statement not covered">        if (Array.isArray(tr)) {</span>
+<span class="cstat-no" title="statement not covered">            trOpts = tr[1] || {};</span>
+<span class="cstat-no" title="statement not covered">            tr = tr[0];</span>
+        }
+<span class="cstat-no" title="statement not covered">        trOpts._flags = trOpts.hasOwnProperty('_flags') ? trOpts._flags : self.options;</span>
+<span class="cstat-no" title="statement not covered">        if (typeof tr === 'function') {</span>
+<span class="cstat-no" title="statement not covered">            var t = tr(file, trOpts);</span>
+<span class="cstat-no" title="statement not covered">            self.emit('transform', t, file);</span>
+<span class="cstat-no" title="statement not covered">            nextTick(cb, null, wrapTransform(t));</span>
+        }
+        else {
+<span class="cstat-no" title="statement not covered">            loadTransform(tr, trOpts, <span class="fstat-no" title="function not covered">function (err, trs) {</span></span>
+<span class="cstat-no" title="statement not covered">                if (err) <span class="cstat-no" title="statement not covered">return cb(err);</span></span>
+<span class="cstat-no" title="statement not covered">                cb(null, wrapTransform(trs));</span>
+            });
+        }
+    }
+    
+<span class="fstat-no" title="function not covered">    function loadTransform (id, trOpts, cb) {</span>
+<span class="cstat-no" title="statement not covered">        var params = { basedir: path.dirname(file) };</span>
+<span class="cstat-no" title="statement not covered">        nodeResolve(id, params, <span class="fstat-no" title="function not covered">function nr (err, res, again) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (err &amp;&amp; again) <span class="cstat-no" title="statement not covered">return cb &amp;&amp; cb(err);</span></span>
+            
+<span class="cstat-no" title="statement not covered">            if (err) {</span>
+<span class="cstat-no" title="statement not covered">                params.basedir = pkg.__dirname;</span>
+<span class="cstat-no" title="statement not covered">                return nodeResolve(id, params, <span class="fstat-no" title="function not covered">function (e, r) {</span></span>
+<span class="cstat-no" title="statement not covered">                    nr(e, r, true)</span>
+                });
+            }
+            
+<span class="cstat-no" title="statement not covered">            if (!res) <span class="cstat-no" title="statement not covered">return cb(new Error(</span></span>
+                'cannot find transform module ' + tr
+                + ' while transforming ' + file
+            ));
+            
+<span class="cstat-no" title="statement not covered">            var r = require(res);</span>
+<span class="cstat-no" title="statement not covered">            if (typeof r !== 'function') {</span>
+<span class="cstat-no" title="statement not covered">                return cb(new Error(</span>
+                    'Unexpected ' + typeof r + ' exported by the '
+                    + JSON.stringify(res) + ' package. '
+                    + 'Expected a transform function.'
+                ));
+            }
+            
+<span class="cstat-no" title="statement not covered">            var trs = r(file, trOpts);</span>
+<span class="cstat-no" title="statement not covered">            self.emit('transform', trs, file);</span>
+<span class="cstat-no" title="statement not covered">            cb(null, trs);</span>
+        });
+    }
+};
+&nbsp;
+Deps.prototype.walk = <span class="fstat-no" title="function not covered">function (id, parent, cb) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this;</span>
+<span class="cstat-no" title="statement not covered">    var opts = self.options;</span>
+<span class="cstat-no" title="statement not covered">    this.pending ++;</span>
+    
+<span class="cstat-no" title="statement not covered">    var rec = {};</span>
+<span class="cstat-no" title="statement not covered">    var input;</span>
+<span class="cstat-no" title="statement not covered">    if (typeof id === 'object') {</span>
+<span class="cstat-no" title="statement not covered">        rec = xtend(id);</span>
+<span class="cstat-no" title="statement not covered">        if (rec.entry === false) <span class="cstat-no" title="statement not covered">delete rec.entry;</span></span>
+<span class="cstat-no" title="statement not covered">        id = rec.file || rec.id;</span>
+<span class="cstat-no" title="statement not covered">        input = true;</span>
+<span class="cstat-no" title="statement not covered">        this.inputPending ++;</span>
+    }
+    
+<span class="cstat-no" title="statement not covered">    self.resolve(id, parent, <span class="fstat-no" title="function not covered">function (err, file, pkg, fakePath) {</span></span>
+        // this is checked early because parent.modules is also modified
+        // by this function.
+<span class="cstat-no" title="statement not covered">        var builtin = has(parent.modules, id);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">        if (rec.expose) {</span>
+            // Set options.expose to make the resolved pathname available to the
+            // caller. They may or may not have requested it, but it's harmless
+            // to set this if they didn't.
+<span class="cstat-no" title="statement not covered">            self.options.expose[rec.expose] =</span>
+                self.options.modules[rec.expose] = file;
+        }
+<span class="cstat-no" title="statement not covered">        if (pkg &amp;&amp; !self._emittedPkg[pkg.__dirname]) {</span>
+<span class="cstat-no" title="statement not covered">            self._emittedPkg[pkg.__dirname] = true;</span>
+<span class="cstat-no" title="statement not covered">            self.emit('package', pkg);</span>
+        }
+        
+<span class="cstat-no" title="statement not covered">        if (opts.postFilter &amp;&amp; !opts.postFilter(id, file, pkg)) {</span>
+<span class="cstat-no" title="statement not covered">            if (--self.pending === 0) <span class="cstat-no" title="statement not covered">self.push(null);</span></span>
+<span class="cstat-no" title="statement not covered">            if (input) <span class="cstat-no" title="statement not covered">--self.inputPending;</span></span>
+<span class="cstat-no" title="statement not covered">            return cb &amp;&amp; cb(null, undefined);</span>
+        }
+<span class="cstat-no" title="statement not covered">        if (err &amp;&amp; rec.source) {</span>
+<span class="cstat-no" title="statement not covered">            file = rec.file;</span>
+            
+<span class="cstat-no" title="statement not covered">            var ts = self.getTransforms(file, pkg);</span>
+<span class="cstat-no" title="statement not covered">            ts.pipe(concat(<span class="fstat-no" title="function not covered">function (body) {</span></span>
+<span class="cstat-no" title="statement not covered">                rec.source = body.toString('utf8');</span>
+<span class="cstat-no" title="statement not covered">                fromSource(file, rec.source, pkg);</span>
+            }));
+<span class="cstat-no" title="statement not covered">            return ts.end(rec.source);</span>
+        }
+<span class="cstat-no" title="statement not covered">        if (err &amp;&amp; self.options.ignoreMissing) {</span>
+<span class="cstat-no" title="statement not covered">            if (--self.pending === 0) <span class="cstat-no" title="statement not covered">self.push(null);</span></span>
+<span class="cstat-no" title="statement not covered">            if (input) <span class="cstat-no" title="statement not covered">--self.inputPending;</span></span>
+<span class="cstat-no" title="statement not covered">            self.emit('missing', id, parent);</span>
+<span class="cstat-no" title="statement not covered">            return cb &amp;&amp; cb(null, undefined);</span>
+        }
+<span class="cstat-no" title="statement not covered">        if (err) <span class="cstat-no" title="statement not covered">return self.emit('error', err);</span></span>
+<span class="cstat-no" title="statement not covered">        if (self.visited[file]) {</span>
+<span class="cstat-no" title="statement not covered">            if (-- self.pending === 0) <span class="cstat-no" title="statement not covered">self.push(null);</span></span>
+<span class="cstat-no" title="statement not covered">            if (input) <span class="cstat-no" title="statement not covered">--self.inputPending;</span></span>
+<span class="cstat-no" title="statement not covered">            return cb &amp;&amp; cb(null, file);</span>
+        }
+<span class="cstat-no" title="statement not covered">        self.visited[file] = true;</span>
+        
+<span class="cstat-no" title="statement not covered">        if (rec.source) {</span>
+<span class="cstat-no" title="statement not covered">            var ts = self.getTransforms(file, pkg);</span>
+<span class="cstat-no" title="statement not covered">            ts.pipe(concat(<span class="fstat-no" title="function not covered">function (body) {</span></span>
+<span class="cstat-no" title="statement not covered">                rec.source = body.toString('utf8');</span>
+<span class="cstat-no" title="statement not covered">                fromSource(file, rec.source, pkg);</span>
+            }));
+<span class="cstat-no" title="statement not covered">            return ts.end(rec.source);</span>
+        }
+        
+<span class="cstat-no" title="statement not covered">        var c = self.cache &amp;&amp; self.cache[file];</span>
+<span class="cstat-no" title="statement not covered">        if (c) <span class="cstat-no" title="statement not covered">return fromDeps(file, c.source, c.package, fakePath, Object.keys(c.deps));</span></span>
+        
+<span class="cstat-no" title="statement not covered">        self.persistentCache(file, id, pkg, persistentCacheFallback, <span class="fstat-no" title="function not covered">function (err, c) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (err) {</span>
+<span class="cstat-no" title="statement not covered">                self.emit('error', err);</span>
+<span class="cstat-no" title="statement not covered">                return;</span>
+            }
+<span class="cstat-no" title="statement not covered">            fromDeps(file, c.source, c.package, fakePath, Object.keys(c.deps));</span>
+        });
+&nbsp;
+<span class="fstat-no" title="function not covered">        function persistentCacheFallback (dataAsString, cb) {</span>
+<span class="cstat-no" title="statement not covered">            var stream = dataAsString ? toStream(dataAsString) : self.readFile(file, id, pkg);</span>
+<span class="cstat-no" title="statement not covered">            stream</span>
+                .pipe(self.getTransforms(fakePath || file, pkg, {
+                    builtin: builtin,
+                    inNodeModules: parent.inNodeModules
+                }))
+                .pipe(concat(<span class="fstat-no" title="function not covered">function (body) {</span>
+<span class="cstat-no" title="statement not covered">                    var src = body.toString('utf8');</span>
+<span class="cstat-no" title="statement not covered">                    var deps = getDeps(file, src);</span>
+<span class="cstat-no" title="statement not covered">                    if (deps) {</span>
+<span class="cstat-no" title="statement not covered">                        cb(null, {</span>
+                            source: src,
+                            package: pkg,
+                            deps: deps.reduce(<span class="fstat-no" title="function not covered">function (deps, dep) {</span>
+<span class="cstat-no" title="statement not covered">                                deps[dep] = true;</span>
+<span class="cstat-no" title="statement not covered">                                return deps;</span>
+                            }, {})
+                        });
+                    }
+                }));
+        }
+    });
+&nbsp;
+<span class="fstat-no" title="function not covered">    function getDeps (file, src) {</span>
+<span class="cstat-no" title="statement not covered">        return rec.noparse ? [] : self.parseDeps(file, src);</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered">    function fromSource (file, src, pkg, fakePath) {</span>
+<span class="cstat-no" title="statement not covered">        var deps = getDeps(file, src);</span>
+<span class="cstat-no" title="statement not covered">        if (deps) <span class="cstat-no" title="statement not covered">fromDeps(file, src, pkg, fakePath, deps);</span></span>
+    }
+    
+<span class="fstat-no" title="function not covered">    function fromDeps (file, src, pkg, fakePath, deps) {</span>
+<span class="cstat-no" title="statement not covered">        var p = deps.length;</span>
+<span class="cstat-no" title="statement not covered">        var resolved = {};</span>
+        
+<span class="cstat-no" title="statement not covered">        if (input) <span class="cstat-no" title="statement not covered">--self.inputPending;</span></span>
+        
+<span class="cstat-no" title="statement not covered">        (<span class="fstat-no" title="function not covered">function resolve () {</span></span>
+<span class="cstat-no" title="statement not covered">            if (self.inputPending &gt; 0) <span class="cstat-no" title="statement not covered">return setTimeout(resolve);</span></span>
+<span class="cstat-no" title="statement not covered">            deps.forEach(<span class="fstat-no" title="function not covered">function (id) {</span></span>
+<span class="cstat-no" title="statement not covered">                if (opts.filter &amp;&amp; !opts.filter(id)) {</span>
+<span class="cstat-no" title="statement not covered">                    resolved[id] = false;</span>
+<span class="cstat-no" title="statement not covered">                    if (--p === 0) <span class="cstat-no" title="statement not covered">done();</span></span>
+<span class="cstat-no" title="statement not covered">                    return;</span>
+                }
+<span class="cstat-no" title="statement not covered">                var isTopLevel = self._isTopLevel(fakePath || file);</span>
+<span class="cstat-no" title="statement not covered">                var current = {</span>
+                    id: file,
+                    filename: file,
+                    paths: self.paths,
+                    package: pkg,
+                    inNodeModules: parent.inNodeModules || !isTopLevel
+                };
+<span class="cstat-no" title="statement not covered">                self.walk(id, current, <span class="fstat-no" title="function not covered">function (err, r) {</span></span>
+<span class="cstat-no" title="statement not covered">                    resolved[id] = r;</span>
+<span class="cstat-no" title="statement not covered">                    if (--p === 0) <span class="cstat-no" title="statement not covered">done();</span></span>
+                });
+            });
+<span class="cstat-no" title="statement not covered">            if (deps.length === 0) <span class="cstat-no" title="statement not covered">done();</span></span>
+        })();
+        
+<span class="fstat-no" title="function not covered">        function done () {</span>
+<span class="cstat-no" title="statement not covered">            if (!rec.id) <span class="cstat-no" title="statement not covered">rec.id = file;</span></span>
+<span class="cstat-no" title="statement not covered">            if (!rec.source) <span class="cstat-no" title="statement not covered">rec.source = src;</span></span>
+<span class="cstat-no" title="statement not covered">            if (!rec.deps) <span class="cstat-no" title="statement not covered">rec.deps = resolved;</span></span>
+<span class="cstat-no" title="statement not covered">            if (!rec.file) <span class="cstat-no" title="statement not covered">rec.file = file;</span></span>
+            
+<span class="cstat-no" title="statement not covered">            if (self.entries.indexOf(file) &gt;= 0) {</span>
+<span class="cstat-no" title="statement not covered">                rec.entry = true;</span>
+            }
+<span class="cstat-no" title="statement not covered">            self.push(rec);</span>
+            
+<span class="cstat-no" title="statement not covered">            if (cb) <span class="cstat-no" title="statement not covered">cb(null, file);</span></span>
+<span class="cstat-no" title="statement not covered">            if (-- self.pending === 0) <span class="cstat-no" title="statement not covered">self.push(null);</span></span>
+        }
+    }
+};
+&nbsp;
+Deps.prototype.parseDeps = <span class="fstat-no" title="function not covered">function (file, src, cb) {</span>
+<span class="cstat-no" title="statement not covered">    if (this.options.noParse === true) <span class="cstat-no" title="statement not covered">return [];</span></span>
+<span class="cstat-no" title="statement not covered">    if (/\.json$/.test(file)) <span class="cstat-no" title="statement not covered">return [];</span></span>
+    
+<span class="cstat-no" title="statement not covered">    if (Array.isArray(this.options.noParse)</span>
+    &amp;&amp; this.options.noParse.indexOf(file) &gt;= 0) {
+<span class="cstat-no" title="statement not covered">        return [];</span>
+    }
+    
+<span class="cstat-no" title="statement not covered">    try { <span class="cstat-no" title="statement not covered">var deps = detective(src) }</span></span>
+    catch (ex) {
+<span class="cstat-no" title="statement not covered">        var message = ex &amp;&amp; ex.message ? ex.message : ex;</span>
+<span class="cstat-no" title="statement not covered">        this.emit('error', new Error(</span>
+            'Parsing file ' + file + ': ' + message
+        ));
+<span class="cstat-no" title="statement not covered">        return;</span>
+    }
+<span class="cstat-no" title="statement not covered">    return deps;</span>
+};
+&nbsp;
+Deps.prototype.lookupPackage = <span class="fstat-no" title="function not covered">function (file, cb) {</span>
+<span class="cstat-no" title="statement not covered">    var self = this;</span>
+    
+<span class="cstat-no" title="statement not covered">    var cached = this.pkgCache[file];</span>
+<span class="cstat-no" title="statement not covered">    if (cached) <span class="cstat-no" title="statement not covered">return nextTick(cb, null, cached);</span></span>
+<span class="cstat-no" title="statement not covered">    if (cached === false) <span class="cstat-no" title="statement not covered">return nextTick(cb, null, undefined);</span></span>
+    
+<span class="cstat-no" title="statement not covered">    var dirs = parents(file ? path.dirname(file) : self.basedir);</span>
+    
+<span class="cstat-no" title="statement not covered">    (<span class="fstat-no" title="function not covered">function next () {</span></span>
+<span class="cstat-no" title="statement not covered">        if (dirs.length === 0) {</span>
+<span class="cstat-no" title="statement not covered">            self.pkgCache[file] = false;</span>
+<span class="cstat-no" title="statement not covered">            return cb(null, undefined);</span>
+        }
+<span class="cstat-no" title="statement not covered">        var dir = dirs.shift();</span>
+<span class="cstat-no" title="statement not covered">        if (dir.split(/[\\\/]/).slice(-1)[0] === 'node_modules') {</span>
+<span class="cstat-no" title="statement not covered">            return cb(null, undefined);</span>
+        }
+        
+<span class="cstat-no" title="statement not covered">        var pkgfile = path.join(dir, 'package.json');</span>
+        
+<span class="cstat-no" title="statement not covered">        var cached = self.pkgCache[pkgfile];</span>
+<span class="cstat-no" title="statement not covered">        if (cached) <span class="cstat-no" title="statement not covered">return nextTick(cb, null, cached);</span></span>
+        else <span class="cstat-no" title="statement not covered">if (cached === false) <span class="cstat-no" title="statement not covered">return next();</span></span>
+        
+<span class="cstat-no" title="statement not covered">        var pcached = self.pkgFileCachePending[pkgfile];</span>
+<span class="cstat-no" title="statement not covered">        if (pcached) <span class="cstat-no" title="statement not covered">return pcached.push(onpkg);</span></span>
+<span class="cstat-no" title="statement not covered">        pcached = self.pkgFileCachePending[pkgfile] = [];</span>
+        
+<span class="cstat-no" title="statement not covered">        fs.readFile(pkgfile, <span class="fstat-no" title="function not covered">function (err, src) {</span></span>
+<span class="cstat-no" title="statement not covered">            if (err) <span class="cstat-no" title="statement not covered">return onpkg();</span></span>
+<span class="cstat-no" title="statement not covered">            try { <span class="cstat-no" title="statement not covered">var pkg = JSON.parse(src) }</span></span>
+            catch (err) {
+<span class="cstat-no" title="statement not covered">                return onpkg(new Error([</span>
+                    err + ' while parsing json file ' + pkgfile
+                ].join('')))
+            }
+<span class="cstat-no" title="statement not covered">            pkg.__dirname = dir;</span>
+            
+<span class="cstat-no" title="statement not covered">            self.pkgCache[pkgfile] = pkg;</span>
+<span class="cstat-no" title="statement not covered">            self.pkgCache[file] = pkg;</span>
+<span class="cstat-no" title="statement not covered">            onpkg(null, pkg);</span>
+        });
+        
+<span class="fstat-no" title="function not covered">        function onpkg (err, pkg) {</span>
+<span class="cstat-no" title="statement not covered">            if (self.pkgFileCachePending[pkgfile]) {</span>
+<span class="cstat-no" title="statement not covered">                var fns = self.pkgFileCachePending[pkgfile];</span>
+<span class="cstat-no" title="statement not covered">                delete self.pkgFileCachePending[pkgfile];</span>
+<span class="cstat-no" title="statement not covered">                fns.forEach(<span class="fstat-no" title="function not covered">function (f) {</span> <span class="cstat-no" title="statement not covered">f(err, pkg) }</span>);</span>
+            }
+<span class="cstat-no" title="statement not covered">            if (err) <span class="cstat-no" title="statement not covered">cb(err)</span></span>
+            else <span class="cstat-no" title="statement not covered">if (pkg) <span class="cstat-no" title="statement not covered">cb(null, pkg)</span></span>
+            else {
+<span class="cstat-no" title="statement not covered">                self.pkgCache[pkgfile] = false;</span>
+<span class="cstat-no" title="statement not covered">                next();</span>
+            }
+        }
+    })();
+};
+ 
+<span class="fstat-no" title="function not covered">function getTransforms (pkg, opts) {</span>
+<span class="cstat-no" title="statement not covered">    var trx = [];</span>
+<span class="cstat-no" title="statement not covered">    if (opts.transformKey) {</span>
+<span class="cstat-no" title="statement not covered">        var n = pkg;</span>
+<span class="cstat-no" title="statement not covered">        var keys = opts.transformKey;</span>
+<span class="cstat-no" title="statement not covered">        for (var i = 0; i &lt; keys.length; i++) {</span>
+<span class="cstat-no" title="statement not covered">            if (n &amp;&amp; typeof n === 'object') <span class="cstat-no" title="statement not covered">n = n[keys[i]];</span></span>
+            else <span class="cstat-no" title="statement not covered">break;</span>
+        }
+<span class="cstat-no" title="statement not covered">        if (i === keys.length) {</span>
+<span class="cstat-no" title="statement not covered">            trx = [].concat(n).filter(Boolean);</span>
+        }
+    }
+<span class="cstat-no" title="statement not covered">    return trx.concat(opts.globalTransform || []);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function nextTick (cb) {</span>
+<span class="cstat-no" title="statement not covered">    var args = [].slice.call(arguments, 1);</span>
+<span class="cstat-no" title="statement not covered">    process.nextTick(<span class="fstat-no" title="function not covered">function () {</span> <span class="cstat-no" title="statement not covered">cb.apply(null, args) }</span>);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function xhas (obj) {</span>
+<span class="cstat-no" title="statement not covered">    if (!obj) <span class="cstat-no" title="statement not covered">return false;</span></span>
+<span class="cstat-no" title="statement not covered">    for (var i = 1; i &lt; arguments.length; i++) {</span>
+<span class="cstat-no" title="statement not covered">        var key = arguments[i];</span>
+<span class="cstat-no" title="statement not covered">        if (!has(obj, key)) <span class="cstat-no" title="statement not covered">return false;</span></span>
+<span class="cstat-no" title="statement not covered">        obj = obj[key];</span>
+    }
+<span class="cstat-no" title="statement not covered">    return true;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function toStream (dataAsString) {</span>
+<span class="cstat-no" title="statement not covered">    var tr = through();</span>
+<span class="cstat-no" title="statement not covered">    tr.push(dataAsString);</span>
+<span class="cstat-no" title="statement not covered">    tr.push(null);</span>
+<span class="cstat-no" title="statement not covered">    return tr;</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function has (obj, key) {</span>
+<span class="cstat-no" title="statement not covered">    return obj &amp;&amp; Object.prototype.hasOwnProperty.call(obj, key);</span>
+}
+&nbsp;
+<span class="fstat-no" title="function not covered">function wrapTransform (tr) {</span>
+<span class="cstat-no" title="statement not covered">    if (typeof tr.read === 'function') <span class="cstat-no" title="statement not covered">return tr;</span></span>
+<span class="cstat-no" title="statement not covered">    var input = through(), output = through();</span>
+<span class="cstat-no" title="statement not covered">    input.pipe(tr).pipe(output);</span>
+<span class="cstat-no" title="statement not covered">    var wrapper = duplexer(input, output);</span>
+<span class="cstat-no" title="statement not covered">    tr.on('error', <span class="fstat-no" title="function not covered">function (err) {</span> <span class="cstat-no" title="statement not covered">wrapper.emit('error', err) }</span>);</span>
+<span class="cstat-no" title="statement not covered">    return wrapper;</span>
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Wed Apr 19 2017 14:16:17 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
